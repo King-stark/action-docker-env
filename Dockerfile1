@@ -26,7 +26,7 @@ USER user
 WORKDIR /home/user
 
 ENV TZ=Asia/Shanghai \
-    LANG en_US.utf8 \
+    LANG=en_US.utf8 \
     TERM=xterm-256color \
     SSH_SERVER=true \
 
