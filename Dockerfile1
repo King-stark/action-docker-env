@@ -19,7 +19,7 @@ RUN apt-get -y update && apt-get -y upgrade \
     && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
     && chmod 440 /etc/sudoers.d/$USER \
     && mkdir -p ~/.ssh \
-    && chmod 700 ~/.ssh \
+    && chmod 700 ~/.ssh
 
 
 USER user
@@ -28,7 +28,7 @@ WORKDIR /home/user
 ENV TZ=Asia/Shanghai \
     LANG=en_US.utf8 \
     TERM=xterm-256color \
-    SSH_SERVER=true \
+    SSH_SERVER=true
 
 RUN CHSH=no RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" \
     && sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="ys"/' ~/.zshrc \
