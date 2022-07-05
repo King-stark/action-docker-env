@@ -1,4 +1,4 @@
-# 感谢 P3TERX/openwrt-build-env
+# 感谢 [P3TERX/openwrt-build-env](https://github.com/P3TERX/openwrt-build-env)
 
 [![LICENSE](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square&label=License)](https://github.com/P3TERX/openwrt-build-env/blob/master/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/P3TERX/openwrt-build-env.svg?style=flat-square&label=Stars&logo=github)](https://github.com/P3TERX/openwrt-build-env/stargazers)
