@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-
+COPY init /
 ARG USER=user
 ARG DEBIAN_FRONTEND noninteractive
 
@@ -10,7 +10,7 @@ RUN apt-get -y update && apt-get -y upgrade \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache/* \
     && mkdir /var/run/sshd \
-    && rm -f /etc/ssh/ssh_host_*key* \
+    && rm -f /etc/ssh/ssh_host_*key* 
 
 USER user
 WORKDIR /home/user
