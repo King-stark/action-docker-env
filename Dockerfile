@@ -20,7 +20,7 @@ RUN groupadd -g 1000 user \
     && useradd -l -m -d /home/user -u 1000 -g user -G sudo -s /bin/bash user \
     && echo "user:user" | chpasswd \
     && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
-    && echo 'user ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/user 
+    && echo 'user ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/user \
     && chmod 440 /etc/sudoers.d/user \
     && mkdir -p ~/.ssh \
     && chmod 700 ~/.ssh
