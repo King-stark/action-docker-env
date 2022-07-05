@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+[ "$(ls -l /etc/ssh | grep 'ssh_host_.*key.*')" ] ||
+    sudo ssh-keygen -A
+
+[ "$(ls -l /etc/localtime | grep $TZ)" ] ||
+    sudo ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
+
+[ "$SSH_SERVER" = "true" ] &&
+    exec sudo /usr/sbin/sshd -D -e
