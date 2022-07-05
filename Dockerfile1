@@ -8,7 +8,6 @@ RUN apt-get -y update \
     && apt-get install -y sudo zsh htop byobu tree ca-certificates uuid-runtime tzdata xz-utils openssh-server \
     && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && dpkg-reconfigure -f noninteractive tzdata \
-    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
     && apt-get autoremove --purge \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache/* \
