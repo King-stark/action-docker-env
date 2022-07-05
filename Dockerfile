@@ -19,9 +19,9 @@ RUN groupadd -g 1000 builder \
     && useradd -l -m -d /home/builder -u 1000 -g builder -G sudo -s /bin/bash builder \
     && echo '%builder ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-USER builder:builder
-ENV HOME /home/builder
-WORKDIR /home/builder
+USER user
+ENV HOME /home/user
+WORKDIR /home/user
 
 RUN CHSH=no RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" \
     && sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="ys"/' ~/.zshrc \
