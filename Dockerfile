@@ -12,9 +12,6 @@ RUN apt-get -y update && apt-get -y upgrade \
     && mkdir /var/run/sshd \
     && rm -f /etc/ssh/ssh_host_*key* 
 
-USER user
-WORKDIR /home/user
-
 RUN groupadd -g 1000 $USER \
     && useradd -l -m -d /home/user -u 1000 -g $USER -G sudo -s $(which zsh) $USER \
     && echo "$USER:$USER" | chpasswd \
@@ -23,6 +20,8 @@ RUN groupadd -g 1000 $USER \
     && mkdir -p ~/.ssh \
     && chmod 700 ~/.ssh
 
+USER user
+WORKDIR /home/user
 ENV TZ=Asia/Shanghai \
     LANG=en_US.utf8 \
     TERM=xterm-256color \
