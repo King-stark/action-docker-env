@@ -26,8 +26,7 @@ RUN groupadd -g 1000 user \
     && chmod 700 ~/.ssh
 
 USER user
-ENV HOME /home/user \
-    TERM xterm-256color
+ENV HOME /home/user
 WORKDIR /home/user
 
 RUN CHSH=no RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" \
