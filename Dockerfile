@@ -26,7 +26,7 @@ RUN groupadd -g 1000 user \
     && chmod 700 ~/.ssh
 
 USER user
-ENV HOME /home/builder
+ENV HOME /home/builder \
     TERM xterm-256color
 WORKDIR /home/user
 
