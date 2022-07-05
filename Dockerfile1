@@ -22,6 +22,7 @@ RUN apt-get -y update \
 
 
 USER user
+ENV HOME /home/user
 WORKDIR /home/user
 
 ENV TZ=Asia/Shanghai \
