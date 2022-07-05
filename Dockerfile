@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
-ARG USER=user
-ARG DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND noninteractive
+ENV FORCE_UNSAFE_CONFIGURE 1
 
 RUN apt-get -y update && apt-get -y upgrade \
     && apt-get install -y curl sudo zsh htop byobu tree ca-certificates uuid-runtime tzdata xz-utils openssh-server \
@@ -16,18 +16,19 @@ RUN apt-get -y update && apt-get -y upgrade \
 
 ENV LANG en_US.utf8
 
-RUN groupadd -g 1000 $USER \
-    && useradd -l -m -d /home/user -u 1000 -g $USER -G sudo -s $(which zsh) $USER \
-    && echo "$USER:$USER" | chpasswd \
+RUN groupadd -g 1000 user \
+    && useradd -l -m -d /home/user -u 1000 -g user -G sudo -s /bin/bash user \
+    && echo "user:user" | chpasswd \
     && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
-    && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
-    && chmod 440 /etc/sudoers.d/$USER \
+    && echo 'user ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/user 
+    && chmod 440 /etc/sudoers.d/user \
     && mkdir -p ~/.ssh \
     && chmod 700 ~/.ssh
 
 USER user
+ENV HOME /home/builder
+    TERM xterm-256color
 WORKDIR /home/user
-ENV TERM=xterm-256color
 
 RUN CHSH=no RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" \
     && sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="ys"/' ~/.zshrc \
