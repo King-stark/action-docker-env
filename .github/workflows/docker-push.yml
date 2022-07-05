@@ -37,7 +37,7 @@ jobs:
       with:
         builder: ${{ steps.buildx.outputs.name }}
         platforms: linux/amd64
-        file: Dockerfile
+        file: Dockerfile1
         context: .
         push: true
         tags: |
