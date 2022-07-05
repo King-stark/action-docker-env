@@ -1,29 +1,27 @@
 FROM ubuntu:20.04
+COPY init /
 ARG USER=user
 ARG DEBIAN_FRONTEND noninteractive
-ENV FORCE_UNSAFE_CONFIGURE 1
 
 RUN apt-get -y update && apt-get -y upgrade \
     && apt-get install -y curl sudo zsh htop byobu tree ca-certificates uuid-runtime tzdata xz-utils openssh-server \
     && apt-get install -y $(curl -fsSL https://github.com/King-stark/Build-OpenWrt/raw/main/depends/depends-lede) \
-    && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && dpkg-reconfigure -f noninteractive tzdata \
     && apt-get autoremove --purge \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache/* \
     && mkdir /var/run/sshd \
     && rm -f /etc/ssh/ssh_host_*key* \
-    && useradd -m -s $(which zsh) $USER \
+
+USER user
+WORKDIR /home/user
+
+RUN groupadd -g 1000 $USER \
+    && useradd -l -m -d /home/user -u 1000 -g $USER -G sudo -s $(which zsh) $USER \
     && echo "$USER:$USER" | chpasswd \
     && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
     && chmod 440 /etc/sudoers.d/$USER \
     && mkdir -p ~/.ssh \
     && chmod 700 ~/.ssh
-
-
-USER user
-ENV HOME /home/user
-WORKDIR /home/user
 
 ENV TZ=Asia/Shanghai \
     LANG=en_US.utf8 \
