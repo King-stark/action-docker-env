@@ -18,7 +18,7 @@ ENV LANG en_US.utf8
 
 RUN groupadd -g 1000 builder \
     && useradd -l -m -d /home/builder -u 1000 -g builder -G sudo -s /bin/bash builder \
-    && echo "user:user" | chpasswd \
+    && echo "builder:builder" | chpasswd \
     && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
     && echo '%builder ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
     && mkdir -p ~/.ssh \
