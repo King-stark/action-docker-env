@@ -4,11 +4,10 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV FORCE_UNSAFE_CONFIGURE 1
 
 RUN apt-get -y update && apt-get -y upgrade \
-    && apt-get install -y curl sudo zsh htop byobu tree ca-certificates uuid-runtime tzdata xz-utils openssh-server \
+    && apt-get install -y --no-install-recommends curl sudo zsh htop byobu tree ca-certificates uuid-runtime tzdata xz-utils openssh-server \
     && apt-get install -y $(curl -fsSL https://github.com/King-stark/Build-OpenWrt/raw/main/depends/depends-lede) \
     && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && dpkg-reconfigure -f noninteractive tzdata \
-    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
     && apt-get autoremove --purge \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache/* \
