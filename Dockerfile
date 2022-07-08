@@ -8,6 +8,7 @@ RUN apt-get -y update && apt-get -y upgrade \
     && apt-get install -y $(curl -fsSL https://github.com/King-stark/Build-OpenWrt/raw/main/depends/depends-lede) \
     && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && dpkg-reconfigure -f noninteractive tzdata \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
     && apt-get autoremove --purge \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache/* \
@@ -16,18 +17,17 @@ RUN apt-get -y update && apt-get -y upgrade \
 
 ENV LANG en_US.utf8
 
-RUN groupadd -g 1000 user \
-    && useradd -l -m -d /home/user -u 1000 -g user -G sudo -s /bin/bash user \
+RUN groupadd -g 1000 builder \
+    && useradd -l -m -d /home/builder -u 1000 -g builder -G sudo -s /bin/bash builder \
     && echo "user:user" | chpasswd \
     && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
-    && echo 'user ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/user \
-    && chmod 440 /etc/sudoers.d/user \
+    && echo '%builder ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
     && mkdir -p ~/.ssh \
     && chmod 700 ~/.ssh
 
-USER user
-ENV HOME /home/user
-WORKDIR /home/user
+USER builder:builder
+ENV HOME /home/builder
+WORKDIR /home/builder
 
 RUN CHSH=no RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" \
     && sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="ys"/' ~/.zshrc \
