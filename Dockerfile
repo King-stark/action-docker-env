@@ -13,6 +13,8 @@ RUN apt-get -y update && apt-get -y upgrade \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache/* \
     && mkdir /var/run/sshd \
     && rm -f /etc/ssh/ssh_host_*key* 
+    && ssh-keygen -A
+    
 
 ENV LANG en_US.utf8
 
