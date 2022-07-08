@@ -12,7 +12,7 @@ RUN apt-get -y update && apt-get -y upgrade \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache/* \
     && mkdir /var/run/sshd \
-    && rm -f /etc/ssh/ssh_host_*key* 
+    && rm -f /etc/ssh/ssh_host_*key* \
     && ssh-keygen -A
     
 
