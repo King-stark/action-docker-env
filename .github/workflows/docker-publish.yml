@@ -40,7 +40,7 @@ jobs:
         file: Dockerfile
         context: .
         push: true
-        tags: amd
+        tags: clearloves/openwrt-build-env:amd
 
     - name: Build and push arm
       uses: docker/build-push-action@v2
@@ -50,7 +50,7 @@ jobs:
         file: Dockerfile-arm
         context: .
         push: true
-        tags: arm
+        tags: clearloves/openwrt-build-env:arm
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
