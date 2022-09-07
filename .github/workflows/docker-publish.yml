@@ -37,7 +37,7 @@ jobs:
       with:
         builder: ${{ steps.buildx.outputs.name }}
         platforms: linux/amd64
-        file: Dockerfile
+        file: Dockerfile.openwrt-amd
         context: .
         push: true
         tags: clearloves/openwrt-build-env:amd
@@ -47,7 +47,7 @@ jobs:
       with:
         builder: ${{ steps.buildx.outputs.name }}
         platforms: linux/arm64
-        file: Dockerfile-arm
+        file: Dockerfile.openwrt-arm
         context: .
         push: true
         tags: clearloves/openwrt-build-env:arm
