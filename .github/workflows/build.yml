@@ -17,7 +17,9 @@ on:
         description: '需要构建的平台'
         required: false
         default: linux/amd64,linux/arm64
-        
+env:
+  TZ: Asia/Shanghai
+
 jobs:
   build:
     runs-on: ubuntu-latest
