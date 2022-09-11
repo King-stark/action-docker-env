@@ -6,6 +6,9 @@ on:
   workflow_dispatch:
   repository_dispatch:
 
+env:
+  TZ: Asia/Shanghai
+  
 jobs:
   publish:
     runs-on: ubuntu-latest
