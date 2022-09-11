@@ -1,4 +1,4 @@
-name: Docker Images Publish (Base env)
+name: openWRT Env Publish
 
 on:
   schedule:
