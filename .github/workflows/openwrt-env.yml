@@ -40,7 +40,7 @@ jobs:
       with:
         builder: ${{ steps.buildx.outputs.name }}
         platforms: linux/amd64
-        file: Dockerfile.openwrt-amd
+        file: ./openwrt/openwrt-amd
         context: .
         push: true
         tags: clearloves/openwrt-build-env:amd
@@ -50,7 +50,7 @@ jobs:
       with:
         builder: ${{ steps.buildx.outputs.name }}
         platforms: linux/arm64
-        file: Dockerfile.openwrt-arm
+        file: ./openwrt/openwrt-arm
         context: .
         push: true
         tags: clearloves/openwrt-build-env:arm
