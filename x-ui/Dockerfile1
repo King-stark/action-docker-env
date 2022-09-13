@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends -y ca-certifica
     && echo "30 9 * * * root /usr/bin/curl -s -L -o /usr/local/x-ui/bin/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat" >> /etc/crontab \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# WORKDIR /root
-
+WORKDIR /usr/local/x-ui
 VOLUME [ "/etc/x-ui" ]
-CMD ["sh", "-c", "/usr/local/x-ui/x-ui"]
+CMD [ "./x-ui" ]
