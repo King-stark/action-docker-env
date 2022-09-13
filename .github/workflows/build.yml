@@ -7,11 +7,14 @@ on:
       imageName:
         description: '构建镜像的名称'
         required: true
+      tag:
+        description: '自定义标签，默认:latest'
+        required: false
       repoPath:
-        description: 'git仓库路径,可空'
+        description: '自定义git仓库路径'
         required: false
       dockerFileUrl:
-        description: '自定义DockerFile下载路径,可空'
+        description: '自定义DockerFile下载路径'
         required: false
       platforms:
         description: '需要构建的平台'
@@ -62,12 +65,12 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
+          platforms: ${{github.event.inputs.platforms}}
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/${{ github.event.inputs.imageName }}:latest
+            ${{ secrets.DOCKER_USERNAME }}/${{ github.event.inputs.imageName }}:{{ github.event.inputs.tag }}
             ${{ secrets.DOCKER_USERNAME }}/${{ github.event.inputs.imageName }}:${{steps.date.outputs.time}}
-          platforms: ${{github.event.inputs.platforms}}
-      
+
       # 打印 docker 镜像 SHA256 Hash 值
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
