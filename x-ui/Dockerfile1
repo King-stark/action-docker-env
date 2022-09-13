@@ -5,8 +5,10 @@ ENV TZ=Asia/Shanghai \
     LANG=C.UTF-8
 
 ARG DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y --no-install-recommends -y ca-certificates curl \
+RUN apt-get update && apt-get install -y --no-install-recommends -y ca-certificates curl cron \
     && curl -O https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install.sh && chmod +x install.sh && ./install.sh \
+    && echo "30 9 * * * root /usr/bin/curl -s -L -o /usr/local/x-ui/bin/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat" >> /etc/crontab \
+    && echo "30 9 * * * root /usr/bin/curl -s -L -o /usr/local/x-ui/bin/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat" >> /etc/crontab \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # WORKDIR /root
