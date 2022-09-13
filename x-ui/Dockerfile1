@@ -10,4 +10,6 @@ ENV TZ Asia/Shanghai \
     LANG C.UTF-8
 
 # WORKDIR /root
+
+VOLUME [ "/etc/x-ui" ]
 CMD ["x-ui", "start"]
