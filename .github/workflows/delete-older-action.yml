@@ -85,8 +85,8 @@ on:
           - 2
           - 1
           - 0
-  #schedule:
-  #- cron: "0 23 * * 0"
+  schedule:
+  - cron: "0 23 * * 0"
 
 env:
   TZ: America/New_York
