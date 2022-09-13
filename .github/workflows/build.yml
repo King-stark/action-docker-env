@@ -68,7 +68,7 @@ jobs:
           platforms: ${{github.event.inputs.platforms}}
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/${{ github.event.inputs.imageName }}:{{ github.event.inputs.tag }}
+            ${{ secrets.DOCKER_USERNAME }}/${{ github.event.inputs.imageName }}:${{ github.event.inputs.tag }}
             ${{ secrets.DOCKER_USERNAME }}/${{ github.event.inputs.imageName }}:${{steps.date.outputs.time}}
 
       # 打印 docker 镜像 SHA256 Hash 值
