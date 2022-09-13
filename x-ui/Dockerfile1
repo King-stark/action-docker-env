@@ -12,4 +12,4 @@ ENV TZ Asia/Shanghai \
 # WORKDIR /root
 
 VOLUME [ "/etc/x-ui" ]
-CMD ["x-ui", "start"]
+CMD ["sh", "-c", "/usr/local/x-ui/x-ui"]
