@@ -1,4 +1,4 @@
-# WARP+ 推荐奖励 Telegram Bot
+# [WARP+ 推荐奖励 Telegram Bot](https://github.com/Oreomeow/warpplus.git)
 > 利用 Telegram Bot 获取 WARP+ 推荐奖励流量并通知用户
 
 
