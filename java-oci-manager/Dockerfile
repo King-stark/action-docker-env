@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends -y ca-certifica
 
 # 环境变量，不仅作用于构建时，容器内依然有效
 ENV TZ=Asia/Shanghai \
-    LANG=C.UTF-8
+    && LANG=C.UTF-8
 
 #
 ENTRYPOINT ["bash", "sh_client_bot.sh"]
