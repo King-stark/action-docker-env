@@ -13,9 +13,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # 环境变量，不仅作用于构建时，容器内依然有效
 ENV TZ=Asia/Shanghai \
-    LANG=C.UTF-8
+    && LANG=C.UTF-8
 
-RUN bash <(wget -qO- https://raw.githubusercontent.com/DuckyProject/DuckyRoBot/main/Install.sh)
+RUN apt-get update && apt-get install -y wget curl \
+    && bash <(wget -qO- https://raw.githubusercontent.com/DuckyProject/DuckyRoBot/main/Install.sh)
 
 # 创建切换工作目录（必须现存或者提前创建）
 # RUN mkdir -p /data/ducky_bot
