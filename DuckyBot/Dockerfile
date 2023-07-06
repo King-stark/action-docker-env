@@ -13,7 +13,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # 环境变量，不仅作用于构建时，容器内依然有效
 ENV TZ=Asia/Shanghai \
-    && LANG=C.UTF-8
+    LANG=C.UTF-8
+#    LANG=en_US.utf8
 
 RUN apt-get update && apt-get install -y wget curl \
     && bash <(wget -qO- https://raw.githubusercontent.com/DuckyProject/DuckyRoBot/main/Install.sh)
