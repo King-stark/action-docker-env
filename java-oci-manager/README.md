@@ -10,7 +10,7 @@ wget https://github.com/King-stark/action-docker-env/raw/master/java-oci-manager
 # docker 部署
 docker run -d --name oci --restart unless-stopped -p 9527:9527 \
 -v $PWD/client_config:/root/client_config -v $PWD/oci.pem:/root/oci.pem \
-clearlove/java-oci-manager
+clearloves/java-oci-manager
 ```
 
 ## 甲骨文云API信息获取
