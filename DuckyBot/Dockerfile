@@ -16,7 +16,7 @@ ENV TZ=Asia/Shanghai \
     LANG=C.UTF-8
 #    LANG=en_US.utf8
 
-RUN apt-get update && apt-get install -y wget curl \
+RUN apt-get -y update && apt-get install -y wget curl \
     && bash <(wget -qO- https://raw.githubusercontent.com/DuckyProject/DuckyRoBot/main/Install.sh)
 
 # 创建切换工作目录（必须现存或者提前创建）
