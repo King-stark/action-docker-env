@@ -1,4 +1,4 @@
-FROM debian:11-slim
+FROM debian:12-slim
 LABEL maintainer t.me/King_Stark_bot
 
 ENV TZ=Asia/Shanghai \
