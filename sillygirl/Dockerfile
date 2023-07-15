@@ -5,10 +5,9 @@ ENV TZ=Asia/Shanghai \
     LANG=C.UTF-8
 
 ARG DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates wget \
+RUN apt-get update && apt-get install -y ca-certificates wget \
     && arch=$(dpkg --print-architecture);wget -qO sillyGirl https://github.com/cdle/sillyGirl/releases/download/main/sillyGirl_linux_${arch} \
-    && chmod 777 sillyGirl \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && chmod 777 sillyGirl
 
 VOLUME [ "/etc/sillyplus" ]
 ENTRYPOINT ["./sillyGirl", "-t"]
