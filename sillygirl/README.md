@@ -8,7 +8,7 @@ mkdir sillyGirl && cd sillyGirl
 # 拉取并运行docker容器
 docker run -itd \
 -v $PWD/data:/etc/sillyplus \
--v $PWD/plugins:/usr/local/sillyplus/plugins \
+-v $PWD/plugins:/root/plugins \
 -p 8080:8080 \
 --name sillyGirl \
 --restart always \
@@ -32,7 +32,7 @@ services:
       - 8080:8080 # 如不使用默认8080web端口的话，推荐使用network_mode: host
     volumes:
       - ./data:/etc/sillyplus
-      - ./plugins:/usr/local/sillyplus/plugins
+      - ./plugins:/root/plugins
 
 # 可选高性能数据存储 redis 服务 （此处需要先创建redis配置文件）
   redis:
