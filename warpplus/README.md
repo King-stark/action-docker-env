@@ -17,7 +17,7 @@ mkdir warp && cd warp
 # 建立docker容器
 cd ..
 docker run -dit \
--v $PWD/warp:/app/Config \
+-v $PWD/warp:/work/Config \
 --restart unless-stopped \
 --hostname warpplus \
 --name warp \
